@@ -6,8 +6,8 @@ namespace PAM_MB_API.Models
     {
         public int MusicoId { get; set; }
         [JsonIgnore]
-        public Musico musico { get; set; } = null!;
+        public Musico? musico { get; set; } = null!;
         public int GeneroId { get; set; }
-        public Genero genero { get; set; } = null!;
+        public Genero? genero { get; set; } = null!;
     }
 }

@@ -7,7 +7,7 @@ namespace PAM_MB_API.Models
     {
         public int UsuarioId { get; set; }
         public int Id { get; set; }
-        public Usuario Usuario { get; set; } = null!;
+        public Usuario? Usuario { get; set; } = null!;
         public string Apelido { get; set; } = string.Empty;
         public string Cpf { get; set; }= string.Empty;
         public ClasseEnum Classe { get; set; }

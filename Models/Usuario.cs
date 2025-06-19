@@ -7,7 +7,7 @@ namespace PAM_MB_API.Models
     {
         public int Id { get; set; }
         [JsonIgnore]
-        public Musico Musico { get; set; }= null!;
+        public Musico? Musico { get; set; }= null!;
         public string Nome { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Endereco { get; set; } = string.Empty;
