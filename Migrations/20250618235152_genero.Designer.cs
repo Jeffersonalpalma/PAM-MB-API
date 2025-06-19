@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PAM_MB_API.Data;
 
@@ -11,9 +12,11 @@ using PAM_MB_API.Data;
 namespace PAM_MB_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250618235152_genero")]
+    partial class genero
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,39 +24,6 @@ namespace PAM_MB_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("PAM_MB_API.Models.Disponibilidade", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateOnly?>("Data")
-                        .HasColumnType("date");
-
-                    b.Property<TimeOnly>("Hora")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TB_DISPONIBILIDADE", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Data = new DateOnly(2000, 5, 15),
-                            Hora = new TimeOnly(14, 20, 0)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Data = new DateOnly(2000, 5, 15),
-                            Hora = new TimeOnly(19, 20, 0)
-                        });
-                });
 
             modelBuilder.Entity("PAM_MB_API.Models.Genero", b =>
                 {
@@ -184,33 +154,6 @@ namespace PAM_MB_API.Migrations
                             Classe = 1,
                             Cpf = "234.234.234-23",
                             UsuarioId = 1
-                        });
-                });
-
-            modelBuilder.Entity("PAM_MB_API.Models.MusicoDisponibilidade", b =>
-                {
-                    b.Property<int>("MusicoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DisponibilidadeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MusicoId", "DisponibilidadeId");
-
-                    b.HasIndex("DisponibilidadeId");
-
-                    b.ToTable("TB_MUSICO_DISPONIBILIDADE", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            MusicoId = 1,
-                            DisponibilidadeId = 1
-                        },
-                        new
-                        {
-                            MusicoId = 1,
-                            DisponibilidadeId = 2
                         });
                 });
 
@@ -361,25 +304,6 @@ namespace PAM_MB_API.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("PAM_MB_API.Models.MusicoDisponibilidade", b =>
-                {
-                    b.HasOne("PAM_MB_API.Models.Disponibilidade", "disponibilidade")
-                        .WithMany("musicodisponibilidade")
-                        .HasForeignKey("DisponibilidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PAM_MB_API.Models.Musico", "musico")
-                        .WithMany("musicodisponibilidade")
-                        .HasForeignKey("MusicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("disponibilidade");
-
-                    b.Navigation("musico");
-                });
-
             modelBuilder.Entity("PAM_MB_API.Models.MusicoGenero", b =>
                 {
                     b.HasOne("PAM_MB_API.Models.Genero", "genero")
@@ -418,11 +342,6 @@ namespace PAM_MB_API.Migrations
                     b.Navigation("musico");
                 });
 
-            modelBuilder.Entity("PAM_MB_API.Models.Disponibilidade", b =>
-                {
-                    b.Navigation("musicodisponibilidade");
-                });
-
             modelBuilder.Entity("PAM_MB_API.Models.Genero", b =>
                 {
                     b.Navigation("musicogenero");
@@ -435,8 +354,6 @@ namespace PAM_MB_API.Migrations
 
             modelBuilder.Entity("PAM_MB_API.Models.Musico", b =>
                 {
-                    b.Navigation("musicodisponibilidade");
-
                     b.Navigation("musicogenero");
 
                     b.Navigation("musicoinstrumento");

@@ -16,11 +16,27 @@ namespace PAM_MB_API.Controllers
             _context = context;
         }
         [HttpGet("{Id}")]
-       public async Task<ActionResult<IEnumerable<Musico>>> GetMusicos()
-{
-    return await _context.TB_MUSICOS
-        .ToListAsync();
-}
+        public async Task<IActionResult> GetSingle(int id)
+        {
+            try
+            {
+                Musico m = await _context.TB_MUSICOS
+                    .Include(u => u.Usuario)
+                    .Include(g => g.musicogenero)
+                        .ThenInclude(g => g.genero)
+                    .Include(i => i.musicoinstrumento)
+                        .ThenInclude(i => i.instrumento)
+                    .Include(d => d.musicodisponibilidade)
+                    .ThenInclude(d=>d.disponibilidade)
+                    .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
+
+                return Ok(m);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message + " - " + ex.InnerException);
+            }
+        }
 
     }
 }
