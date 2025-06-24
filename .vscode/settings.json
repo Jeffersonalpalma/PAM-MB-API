@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net9.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/6ac98e61-7395-4339-8ab6-fc7d46bc9d28/resourceGroups/majorbeat-api_group/providers/Microsoft.Web/sites/majorbeat-api"
+}

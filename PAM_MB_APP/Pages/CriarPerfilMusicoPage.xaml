@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAM_MB_APP.Pages.CriarPerfilMusicoPage"
+             Title="Criar perfil"
+             BackgroundColor="#4f1270">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Botão Voltar -->
+            <Button Text="← Voltar" HorizontalOptions="Start" BackgroundColor="White" TextColor="Black" Clicked="OnVoltarClicked" />
+
+            <!-- Título -->
+            <Label Text="Criar perfil" FontSize="24" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Imagem de perfil -->
+            <Frame Padding="0" WidthRequest="150" HeightRequest="150" CornerRadius="75" IsClippedToBounds="True" HorizontalOptions="Center">
+                <Image x:Name="imgPerfil" Source="perfil_placeholder.png" Aspect="AspectFill" />
+            </Frame>
+            <Button Text="Selecionar Foto de Perfil" Clicked="OnSelecionarFotoClicked" TextColor="White" BackgroundColor="#4B0082" />
+
+            <!-- Apelido -->
+            <Label Text="Apelido" TextColor="White" />
+            <Entry Placeholder="Ex: Led Zeppelin" x:Name="entryApelido" BackgroundColor="White" TextColor="Black" />
+
+            <!-- Contatos -->
+            <Label Text="Contatos" TextColor="White" />
+            <VerticalStackLayout x:Name="contatosStack" Spacing="10" />
+            <Button Text="Adicionar contato" BackgroundColor="White" TextColor="#4f1270" Clicked="OnAdicionarContatoClicked" />
+
+
+            <!-- Instrumentos -->
+            <Label Text="Instrumentos" TextColor="White" />
+            <VerticalStackLayout x:Name="instrumentosStack" Spacing="10">
+               
+            </VerticalStackLayout>
+
+            <!-- Estilos musicais -->
+            <Label Text="Estilos musicais" TextColor="White"/>
+            <VerticalStackLayout x:Name="generosStack" Spacing="10">
+            </VerticalStackLayout>
+
+            <!-- Biografia -->
+            <Label Text="Biografia" TextColor="White" />
+            <Editor Placeholder="Descreva-se..." x:Name="editorBio" BackgroundColor="White" TextColor="Black" AutoSize="TextChanges" HeightRequest="100" />
+
+            <!-- Destaques -->
+            <Label Text="Destaques" TextColor="White" />
+            <Frame BackgroundColor="White" Padding="10">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Imagem PNG" TextColor="#4f1270" />
+                    <Label Text="Adicione fotos e vídeos favoritos aqui mostrando o seu talento." FontSize="12" TextColor="Gray" />
+                    <Button Text="Adicionar" BackgroundColor="#4f1270" TextColor="White" Clicked="OnAdicionarDestaqueClicked"/>
+                </VerticalStackLayout>
+            </Frame>
+      
+            <!-- Botão Criar Perfil -->
+            <Button Text="Criar perfil" BackgroundColor="White" TextColor="#4f1270" Clicked="OnCriarPerfilClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

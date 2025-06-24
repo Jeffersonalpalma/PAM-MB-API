@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAM_MB_APP.Pages.CriarContaPage"
+             Title="CriarConta"
+             BackgroundColor="#4f1270"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ScrollView>
+
+
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label Text="Criar sua conta" FontAttributes="Bold" FontSize="24" TextColor="White" HorizontalOptions="Center"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <RadioButton
+                    Content="Músico"
+                    GroupName="tipoUsuario"
+                    Value="musico"
+                    x:Name="radioMusico"
+                    TextColor="white"
+                    
+                    />
+
+                    <RadioButton
+                    Content="Contratante"
+                    GroupName="tipoUsuario"
+                    Value="contratante"
+                    x:Name="radioContratante"
+                    TextColor="white"
+                    
+                    />
+               
+                </HorizontalStackLayout>
+
+            <Label Text="Nome completo" TextColor="White"/>
+            <Entry Placeholder="Digite seu nome" x:Name="entryNome" BackgroundColor="white" TextColor="black"/>
+
+            <Label Text="Data de nascimento" TextColor="White"/>
+            <DatePicker x:Name="dateNascimento" MaximumDate="{x:Static sys:DateTime.Now}" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="E-mail" TextColor="White"/>
+            <Entry Placeholder="Digite seu e-mail" x:Name="entryEmail" Keyboard="Email" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Telefone" TextColor="White"/>
+            <Entry Placeholder="Digite seu telefone" x:Name="entryTelefone" Keyboard="Telephone" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Logradouro" TextColor="White"/>
+            <Entry Placeholder="Rua, avenida, etc." x:Name="entryLogradouro" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Número" TextColor="White"/>
+            <Entry Placeholder="Número da casa" x:Name="entryNumero" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="CEP" TextColor="White"/>
+            <Entry Placeholder="Digite o CEP" x:Name="entryCep" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Bairro" TextColor="White"/>
+            <Entry Placeholder="Digite o bairro" x:Name="entryBairro" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Cidade" TextColor="White"/>
+            <Entry Placeholder="Digite a cidade" x:Name="entryCidade" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="UF" TextColor="White"/>
+            <Entry Placeholder="Estado (UF)" x:Name="entryUF" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Senha" TextColor="White"/>
+            <Entry Placeholder="Digite a senha" x:Name="entrySenha" IsPassword="True" BackgroundColor="White" TextColor="black"/>
+
+            <Label Text="Confirmar senha" TextColor="White"/>
+            <Entry Placeholder="Repita a senha" x:Name="entryConfirmaSenha" IsPassword="True" BackgroundColor="White" TextColor="black"/>
+
+            <Button Text="Criar conta" Clicked="OnCriarContaClicked" BackgroundColor="White" TextColor="#4B0082"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -65,6 +65,59 @@ namespace PAM_MB_API.Controllers
                 return BadRequest(ex.Message + " - " + ex.InnerException);
             }
         }
+        [HttpPost("from-dto")]
+        public async Task<IActionResult> AddFromDTO([FromBody] MusicoDTO dto)
+        {
+            try
+            {
+                var existePerfil = await _context.TB_MUSICOS.AnyAsync(m => m.UsuarioId == dto.UsuarioId);
+                if (existePerfil)
+                    return BadRequest("Perfil para este usuário já existe.");
+
+                var usuario = await _context.TB_USUARIO.FindAsync(dto.UsuarioId);
+                if (usuario == null)
+                    return BadRequest("Usuário não encontrado");
+
+                var novoMusico = new Musico
+                {
+                    UsuarioId = dto.UsuarioId,
+                    Apelido = dto.Apelido,
+                    Cpf = "000.000.000-00", 
+                    Classe = ClasseEnum.Solo,
+                };
+
+                await _context.TB_MUSICOS.AddAsync(novoMusico);
+                await _context.SaveChangesAsync();
+
+                foreach (var instId in dto.InstrumentosIds)
+                {
+                    await _context.TB_MUSICO_INSTRUMENTO.AddAsync(new MusicoInstrumento
+                    {
+                        MusicoId = novoMusico.Id,
+                        InstrumentoId = instId
+                    });
+                }
+
+                foreach (var genId in dto.GenerosIds)
+                {
+                    await _context.TB_MUSICO_GENERO.AddAsync(new MusicoGenero
+                    {
+                        MusicoId = novoMusico.Id,
+                        GeneroId = genId
+                    });
+                }
+
+                await _context.SaveChangesAsync();
+
+                return Ok(novoMusico.Id);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest($"Erro ao criar perfil: {ex.Message}");
+            }
+        }
+
         [HttpPut]
         public async Task<IActionResult> Update(Musico novoMusico)
         {
